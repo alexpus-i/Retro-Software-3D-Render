@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Compile and Run SDL3 Project",
+    "command": "cmd.exe",
+    "args": ["/c", "build.bat"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  }
+]
