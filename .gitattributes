@@ -1,2 +1,2 @@
 src/* linguist-language=C++
-external/* linguist-vendored
+include/SDL3/* linguist-vendored
