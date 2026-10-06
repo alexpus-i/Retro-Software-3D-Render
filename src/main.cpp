@@ -1,5 +1,6 @@
 #include "engine.hpp"
 #include <cassert>
+#include <cstdlib>
 #include <vector>
 
 struct Vertices
@@ -11,10 +12,10 @@ struct Vertices
 Vertices vert;
 
 
-void AddVertex(float x, float y)
+void AddVertex(Vector2 positon)
 {
-    vert.vx.push_back(x);
-    vert.vy.push_back(y);
+    vert.vx.push_back(positon.x);
+    vert.vy.push_back(positon.y);
 }
 
 
@@ -32,38 +33,63 @@ void DrawVertices()
 }
 
 
-// void DrawLine()
-// {
-//     assert(vert.vx.size() == vert.vy.size()
-//         && "size of vx-vy are not the same");
+void DrawLine(Vector2 start, Vector2 end, u32 color)
+{
+    int x1 = static_cast<int>(start.x);
+    int y1 = static_cast<int>(start.y);
+    int x2 = static_cast<int>(end.x);
+    int y2 = static_cast<int>(end.y);
+
+    int DistX = abs(x2 - x1);
+    int DistY = abs(y2 - y1);
+    int StepX = (x1 < x2) ? 1 : -1;
+    int StepY = (y1 < y2) ? 1 : -1;
+    int err = DistX - DistY;
+
+    while(true)
+    {
+        DrawPixel(x1, y1, color);
 
 
-//     const int leng = vert.vx.size();
-//     if(leng < 2) { return; }
+        if(x1 == x2 && y1 == y2) break;
 
-//     for(int i=1; i < leng; i++)
-//     {
-//         float StartX = vert.vx[i-1];
-//         float EndX = vert.vx[i];
+        int e2 = err * 2;
+        if(e2 > -DistY)
+        {
+            err -= DistY;
+            x1 += StepX;
+        }
+        if(e2 < DistX)
+        {
+            err += DistX;
+            y1 += StepY;
+        }
+    }
+}
 
 
-//     }
-// }
+void DrawTriangle(Vector2 vertex1, Vector2 vertex2, Vector2 vertex3, u32 color)
+{
+    DrawLine(vertex1, vertex2, color);
+    DrawLine(vertex2, vertex3, color);
+    DrawLine(vertex3, vertex1, color);
+}
 
 
 int main(void)
 {
     if(!Engine_Init()) { return 1;}
 
-
-    AddVertex(40, 180);
-    AddVertex(80, 180);
+    Vector2 vertex1 = { 240, 180 };
+    Vector2 vertex2 = { 260, 200 };
+    Vector2 vertex3 = { 260, 180 };
 
 
     while (ProcessEvents())
     {
 
-        ClearPixels(RGBA(0, 0, 0, 255));
+        ClearPixels(BLACK);
+        DrawTriangle(vertex1, vertex2, vertex3, RED);
         DrawVertices();
         Engine_Update();
        }

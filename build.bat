@@ -1,9 +1,8 @@
 @echo off
 
-:: Создаем папку build, если её ещё нет
+
 if not exist build mkdir build
 
-:: Копируем SDL3.dll в папку сборки, если её там нет
 if not exist "build\SDL3.dll" (
     if exist "SDL3.dll" (
         move "SDL3.dll" "build\"
@@ -12,7 +11,7 @@ if not exist "build\SDL3.dll" (
     )
 )
 
-:: Компиляция всех .cpp файлов из папки src
+
 g++ src\*.cpp -I src -I include lib\libSDL3.dll.a -o build\main.exe
 
 

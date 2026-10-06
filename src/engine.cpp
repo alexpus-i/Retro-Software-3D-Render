@@ -11,11 +11,10 @@ SDL_Texture *texture = nullptr;
 SDL_Event event;
 
 
-void DrawPixel(u32 x, u32 y, u32 color)
+void DrawPixel(int x, int y, u32 color)
 {
     if(x < 0 || x >= Scr_Width || y < 0 || y >= Scr_Height)
     {
-        std::cout << "out of range\n";
         return;
     }
     FrameBuffer[y * Scr_Width + x] = color;

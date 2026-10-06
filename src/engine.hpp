@@ -12,6 +12,20 @@
 #define u32 uint32_t
 #define RGBA(r, g, b, a) ((u32)(r) << 24) | ((u32)(g) << 16) | ((u32)(b) << 8) | ((u32)(a))
 
+#define RED RGBA(255, 0, 0, 255)
+#define GREEN RGBA(0, 255, 0, 255)
+#define BLUE RGBA(0, 0, 255, 255)
+#define BLACK RGBA(0, 0, 0, 255)
+#define WHITE RGBA(255, 255, 255, 255)
+
+
+struct Vector2
+{
+    float x = 0.0f;
+    float y = 0.0f;
+};
+
+
 int const TexPitch = Scr_Width * sizeof(u32);
 
 static u32 FrameBuffer[Scr_Width * Scr_Height];
@@ -22,7 +36,7 @@ extern SDL_Texture *texture;
 extern SDL_Event event;
 
 
-void DrawPixel(u32 x, u32 y, u32 color);
+void DrawPixel(int x, int y, u32 color);
 void ClearPixels(u32 color);
 bool Engine_Init();
 void Engine_Update();

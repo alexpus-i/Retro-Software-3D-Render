@@ -13,13 +13,13 @@
 
 
   # Preview
-  ![First pixels rendering](img/01.png)
+  ![First triangle](img/02.PNG)
 
   
   # Road-Map:
     - [x] Envirompent-setup: Configured "w64devkit" and integrate SDL3 libary;
     - [x] FrameBuffer: Successfully allocating memory for pixels; 
-    - [ ] Line-Drawing: ....
+    - [ ] Line-Drawing: in process ....
     - [ ] Hello-Triangle: ....
     - [ ] Cube: ....
     - [ ] Polygon-Rasterization: ....
@@ -33,4 +33,4 @@
 
   # License
   - This project is licensed under the **MIT License**;
-"# Retro-Software-3D-Render" 
+"# Retro-Software-3D-Render"
